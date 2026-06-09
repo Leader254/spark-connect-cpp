@@ -105,15 +105,18 @@ sudo apt install -y -V \
     libgmock-dev
 
 echo ""
-echo "Install Build dependencies..."
+echo "Installing Build dependencies..."
 sudo apt install build-essential clang g++-14 libstdc++-14-dev -y
 
 echo ""
-echo "Install Dev dependencies..."
-sudo apt install clang-format -y
+echo "Installing Dev dependencies..."
+sudo apt install -y -V \
+    clang-format \
+    gcovr \
+    llvm-18-tools
 
 echo ""
-echo "Cleaning up downloaded package..."
+echo "Cleaning up downloaded packages..."
 echo ""
 rm -f "./${ARROW_PKG}"
 

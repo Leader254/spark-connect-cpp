@@ -4,18 +4,13 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
-######################################################################
-# PROJECT DECLARATION
-# Define project name and version
-######################################################################
 set(PROJECT_NAME "spark_connect_cpp")
 
 project(${PROJECT_NAME})
 
 
 ######################################################################
-# FIND DEPENDENCIES
-# Loaded with PkgConfig
+# PkgConfig
 ######################################################################
 message(STATUS "Using PKG_CONFIG_PATH: $ENV{PKG_CONFIG_PATH}")
 
