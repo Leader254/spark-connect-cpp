@@ -752,3 +752,21 @@ TEST_F(SparkIntegrationTest, ChainedDataFrameTransforms)
 
     EXPECT_GT(cols.size(), raw_df.columns().size());
 }
+
+TEST_F(SparkIntegrationTest, DataFrameAlias)
+{
+    auto df = spark->sql(R"(
+        SELECT * FROM VALUES
+            (14, 'Tom'),
+            (23, 'Alice'),
+            (16, 'Bob')
+        AS people(age, name)
+    )");
+
+    auto df_as1 = df.alias("df_as1");
+    auto df_as2 = df.alias("df_as2");
+
+    auto joined_df = df_as1.join_on_expression(df_as2, "df_as1.name = df_as2.name", "inner");
+
+    EXPECT_NO_THROW(joined_df.show());
+}

@@ -96,6 +96,16 @@ ctest --preset test_local_spark_coverage --verbose --output-on-failure
 #   "test_pr_pipeline_spark_coverage"      - Spark PR Pipeline Test Coverage
 #   "test_pr_pipeline_databricks_coverage" - Databricks PR Pipeline Test Coverage
 # -----------------------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------------------------
+# Run individual tests
+# -----------------------------------------------------------------------------------------
+#  ctest --preset test_local_spark_coverage -R DateTimeAndDecimal
+#
+# Alternatively, you can run the binary directly:
+# cd build
+# ./spark_connect_cpp_test --gtest_filter=SparkIntegrationTest.DateTimeAndDecimal
+# -----------------------------------------------------------------------------------------
 ```
 
 
