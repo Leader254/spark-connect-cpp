@@ -769,4 +769,6 @@ TEST_F(SparkIntegrationTest, DataFrameAlias)
     auto joined_df = df_as1.join_on_expression(df_as2, "df_as1.name = df_as2.name", "inner");
 
     EXPECT_NO_THROW(joined_df.show());
+
+    joined_df.select({"df_as1.name", "df_as2.name", "age"}).show();
 }
