@@ -770,5 +770,18 @@ TEST_F(SparkIntegrationTest, DataFrameAlias)
 
     EXPECT_NO_THROW(joined_df.show());
 
-    joined_df.select({"df_as1.name", "df_as2.name", "age"}).show();
+    EXPECT_NO_THROW(joined_df.select({"df_as1.name", "df_as2.name", "df_as2.age"}).show());
+
+    auto rows = joined_df.collect();
+
+    for (auto item : rows)
+        std::cout << item << std::endl;
+
+    EXPECT_EQ((rows[0].get_long("age")), 14);
+    EXPECT_EQ((rows[1].get_long("age")), 23);
+    EXPECT_EQ((rows[2].get_long("age")), 16);
+
+    EXPECT_EQ(std::get<std::string>(rows[0]["name"]), "Tom");
+    EXPECT_EQ(std::get<std::string>(rows[1]["name"]), "Alice");
+    EXPECT_EQ(std::get<std::string>(rows[2]["name"]), "Bob");
 }
